@@ -1,8 +1,8 @@
 from pypdf import PdfWriter, PdfReader
 
-file_1 = 'D:/source/pdfmergy/pythonProject/mypdf/Resume-Wisarut-BengBeng.pdf'
-file_2 = 'D:/source/pdfmergy/pythonProject/mypdf/ts-en.pdf'
-file_3 = 'D:/source/pdfmergy/pythonProject/mypdf/สำเร็จการศึกษาหลักสูตรนักศึกษาวิชาทหาร.pdf'
+file_1 = 'file1.pdf'
+file_2 = 'file2.pdf'
+file_3 = 'file3.pdf'
 output_file = 'merged_document.pdf'
 
 
