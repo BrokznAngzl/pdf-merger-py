@@ -3,21 +3,32 @@ from pypdf import PdfWriter, PdfReader
 file_1 = 'file1.pdf'
 file_2 = 'file2.pdf'
 file_3 = 'file3.pdf'
+output_file = 'merged_document.pdf'
+
+
+def readAllPage(file, writer):
+    reader = PdfReader(file)
+    for page in reader.pages:
+        writer.add_page(page)
+
+
+def readFocusPage(file, pages, writer):
+    reader = PdfReader(file)
+    for page_num in pages:
+        if page_num < len(reader.pages):
+            writer.add_page(reader.pages[page_num])
+        else:
+            print(f"Page number {page_num} is out of range for this PDF file.")
+
 
 writer = PdfWriter()
+readAllPage(file_1, writer)
+focus_page = [0, 1, 2]
+readFocusPage(file_2, focus_page, writer)
+readAllPage(file_3, writer)
 
-reader = PdfReader(file_1)
-for page in reader.pages:
-    writer.add_page(page)
-
-reader = PdfReader(file_2)
-for page_num in range(2):
-    writer.add_page(reader.pages[page_num])
-
-reader = PdfReader(file_3)
-for page in reader.pages:
-    writer.add_page(page)
-
-output_pdf = open('merged_document.pdf', 'wb')
-writer.write(output_pdf)
-output_pdf.close()
+output_pdf = open(output_file, 'wb')
+try:
+    writer.write(output_pdf)
+finally:
+    output_pdf.close()
